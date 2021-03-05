@@ -18,7 +18,7 @@ namespace ASPMVCDemo.Controllers
         }
 
         [HttpPost]
-        public String Index(LoginDetails loginDetails)
+        public ActionResult Index(LoginDetails loginDetails)
         {
             var data = context.LoginDetails.FirstOrDefault(x => x.UserID == loginDetails.UserID);
 
@@ -27,18 +27,23 @@ namespace ASPMVCDemo.Controllers
 
                 if (data.Password == loginDetails.Password)
                 {
-                    return "Welcome " + data.UserRole;
+                    TempData["Role"] = data.UserRole;
+                    return RedirectToAction("Index", "Employee");
                 }
                 else
                 {
-                    return "User ID or Password Incorrect";
+                    ViewBag.ErrorMessage = "User ID or Password Incorrect";
+                    return View();
                 }
 
 
 
             }
             else
-                return "Login Failed";
+            {
+                ViewBag.ErrorMessage = "Login Failed";
+                return View();
+            }
         }
 
     }

@@ -1,7 +1,7 @@
 ﻿@model ASPMVCDemo.Models.LoginDetails
 
 @{
-    Layout = null;
+    ViewBag.Title = "Login";
 }
 
 <!DOCTYPE html>
@@ -15,7 +15,7 @@
     @using (Html.BeginForm("Index","Login", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
-
+        <h2>Login Form</h2>
         <div>
             <div class="form-horizontal">
 
@@ -37,11 +37,17 @@
 
                     
                             <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="Log In" class="btn btn-default" />
+                                <input type="submit" value="Log In" class="btn btn-primary" />
                             </div>
                    
                
             </div>
+        </div>
+
+        <div>
+            <p style="color:red">
+                @ViewBag.ErrorMessage
+            </p>
         </div>
     }
     </body>

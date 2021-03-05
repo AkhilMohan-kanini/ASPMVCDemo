@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<ASPMVCDemo.Models.LoginDetails>
 
 @{
-    Layout = null;
+    ViewBag.Title = "Employee Page";
 }
 
 <!DOCTYPE html>
@@ -12,6 +12,10 @@
     <title>Index</title>
 </head>
 <body>
+
+    <div>
+        <center><h1>Welcome @ViewData["Role"] </h1></center>
+    </div>
     <p>
         @Html.ActionLink("Create New", "Register")
     </p>

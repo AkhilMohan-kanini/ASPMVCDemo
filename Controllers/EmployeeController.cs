@@ -14,12 +14,19 @@ namespace ASPMVCDemo.Controllers
         // GET: Employee
         public ActionResult Index()
         {
+            ViewData["Role"] = TempData.Peek("Role").ToString();
             var data = context.LoginDetails.ToList();
             return View(data);
         }
 
         public ActionResult Register()
         {
+
+            List<SelectListItem> roles = new List<SelectListItem>() { };
+            roles.Add(new SelectListItem() { Text = "Tester", Value = "Tester" });
+            roles.Add(new SelectListItem() { Text = "Developer", Value = "Developer"});
+            roles.Add(new SelectListItem() { Text = "Manager", Value = "Manager" });
+            ViewBag.Roles = roles;
             return View();
         }
 
@@ -44,6 +51,11 @@ namespace ASPMVCDemo.Controllers
         
         public ActionResult Edit(int? employeeId)
         {
+            List<SelectListItem> roles = new List<SelectListItem>() { };
+            roles.Add(new SelectListItem() { Text = "Tester", Value = "Tester" });
+            roles.Add(new SelectListItem() { Text = "Developer", Value = "Developer" });
+            roles.Add(new SelectListItem() { Text = "Manager", Value = "Manager" });
+            ViewBag.Roles = roles;
             var data = context.LoginDetails.Where(x => x.UserID == employeeId).SingleOrDefault();
             return View(data);
         }
